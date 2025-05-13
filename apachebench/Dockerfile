@@ -1,0 +1,12 @@
+FROM ubuntu
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && \
+    apt-get install -y apache2-utils && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+ENTRYPOINT ["ab", "-n", "10", "-c", "2"]
+
+CMD ["--help"]
